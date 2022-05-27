@@ -6,10 +6,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const ArticleFeed = ({ entries }) => {
+import { useSelector, useDispatch } from 'react-redux';
+
+export const ArticleFeed = () => {
   return (
     <View style={styles.container}>
-      <Text>This is the article feed (TBD)</Text>
+      <Text>This is the article field</Text>
       <StatusBar style='auto' />
     </View>
   );

@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
-import { ArticleFeed } from './Screens/ArticleFeed';
-import { Loader } from './Components/Loader';
-import { contentfulClient } from './Services/contentfulApi';
-import { getAllArticleEntries } from './Services/contentfulApi';
+import store from './redux/store';
+import { Provider } from 'react-redux';
+import Providers from './Providers';
 
-export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  let articles = getAllArticleEntries();
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Providers />
+    </Provider>
+  );
+};
 
-  useEffect(() => {
-    if (articles) setIsLoading(false);
-  });
-  return isLoading ? <Loader /> : <ArticleFeed />;
-}
+export default App;

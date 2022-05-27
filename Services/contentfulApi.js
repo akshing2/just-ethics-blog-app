@@ -28,9 +28,10 @@ export const getAllArticleEntries = async () => {
   const client = await getContentfulClient();
   try {
     const entries = await client.getEntries();
-    console.log('Contentful Entries Recieved!');
+    console.log('Contentful Entries Recieved!: ', entries.total);
     return entries;
   } catch (e) {
     console.warn('Contentful ERROR: ', e);
+    return null;
   }
 };

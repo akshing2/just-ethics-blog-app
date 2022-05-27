@@ -12,6 +12,7 @@
     "@apollo/client": "^3.6.5",
     "@contentful/rich-text-html-renderer": "^15.13.1",
     "@react-native-async-storage/async-storage": "^1.17.5",
+    "@reduxjs/toolkit": "^1.8.2",
     "apollo3-cache-persist": "^0.14.0",
     "contentful": "^9.1.29",
     "expo": "~45.0.0",
@@ -22,7 +23,8 @@
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
     "react-native-dotenv": "^3.3.1",
-    "react-native-web": "0.17.7"
+    "react-native-web": "0.17.7",
+    "react-redux": "^8.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
