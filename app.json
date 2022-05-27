@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "just-ethics-blog-app",
+    "slug": "just-ethics-blog-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
