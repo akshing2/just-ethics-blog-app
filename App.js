@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style='auto' />
-    </View>
-  );
-}
+import { ArticleFeed } from './Screens/ArticleFeed';
+import { Loader } from './Components/Loader';
+import { contentfulClient } from './Services/contentfulApi';
+import { getAllArticleEntries } from './Services/contentfulApi';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  let articles = getAllArticleEntries();
+
+  useEffect(() => {
+    if (articles) setIsLoading(false);
+  });
+  return isLoading ? <Loader /> : <ArticleFeed />;
+}

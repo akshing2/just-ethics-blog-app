@@ -21,7 +21,6 @@ export const Article = ({ article }) => {
       <View style={styles.articleThumbnailContainer}>
         <Text style={styles.text}>{article.title}</Text>
         <Text style={styles.text}>{article.subtitle}</Text>
-        <Text style={styles.text}>{article.title}</Text>
       </View>
     </View>
   );
