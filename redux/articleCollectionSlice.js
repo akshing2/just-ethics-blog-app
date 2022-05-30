@@ -6,7 +6,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // import contentful calls to run requests
 import { getContentfulClient } from '../Services/contentfulApi';
-
+import { mapArticleItemsArray } from '../utils/articleDataMapper';
 // Async Thunks to fetch all articles from contentful backend
 // refactored from contenfulApi function to fetch all entries
 export const fetchAllArticleEntries = createAsyncThunk(
@@ -15,8 +15,8 @@ export const fetchAllArticleEntries = createAsyncThunk(
     const client = await getContentfulClient();
     try {
       const entries = await client.getEntries();
-      console.log('Contentful Entries Recieved in Thunk!: ', entries.total);
-      return entries.items;
+
+      return mapArticleItemsArray(entries.items);
     } catch (e) {
       console.warn('Contentful fetch ERROR: ', e);
       return e;
@@ -26,7 +26,7 @@ export const fetchAllArticleEntries = createAsyncThunk(
 
 const initialState = {
   entries: [], // array of entries as per contentful documentation
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'r
   error: null,
 };
 
@@ -48,7 +48,7 @@ export const articleCollectionSlice = createSlice({
       })
       .addCase(fetchAllArticleEntries.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        console.log('Actions Payload: ', action.payload);
+        //console.log('Actions Payload: ', action.payload);
         state.entries = action.payload;
         state.error = null;
       })

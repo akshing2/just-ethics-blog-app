@@ -19,7 +19,7 @@ export const getContentfulClient = async () => {
       accessToken: CONTENTFUL_API_ACCESS_TOKEN,
     });
   }
-  console.log('Contentful Client: ', contentfulClient);
+  console.log('Contentful Client Created!');
   return contentfulClient;
 };
 

@@ -4,10 +4,8 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { Loader } from '../Components/Loader';
-import { ArticleSelector } from '../Components/ArticleSelector';
 import {
   getArticleEntries,
   getArticleEntriesStatus,
@@ -15,7 +13,7 @@ import {
   fetchAllArticleEntries,
 } from '../redux/articleCollectionSlice';
 
-export const ArticleFeed = () => {
+export const ArticleSelector = () => {
   // define article entries stuff
   const dispatch = useDispatch();
   const articleEntries = useSelector(getArticleEntries);
@@ -28,9 +26,15 @@ export const ArticleFeed = () => {
   }, [articleEntriesStatus, dispatch]);
 
   return (
-    <View style={styles.container}>
-      {articleEntriesStatus === 'idle' ? <Loader /> : <ArticleSelector />}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        keyExtractor={(item) => item.id}
+        data={articleEntries}
+        renderItem={({ item }) => (
+          <Text style={styles.text}> {item.title} </Text>
+        )}
+      />
+    </SafeAreaView>
   );
 };
 
