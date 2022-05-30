@@ -2,12 +2,12 @@ import React from 'react';
 
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import Providers from './Providers';
+import { ArticleFeed } from './Screens/ArticleFeed';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Providers />
+      <ArticleFeed />
     </Provider>
   );
 };

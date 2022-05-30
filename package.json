@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.5",
     "@contentful/rich-text-html-renderer": "^15.13.1",
     "@react-native-async-storage/async-storage": "^1.17.5",
     "@reduxjs/toolkit": "^1.8.2",

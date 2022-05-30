@@ -11,7 +11,7 @@ import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '../tokens';
 export let contentfulClient = null;
 
 // create client
-const getContentfulClient = async () => {
+export const getContentfulClient = async () => {
   if (!contentfulClient) {
     console.log('Creating Client for contentful');
     contentfulClient = createClient({
@@ -32,6 +32,6 @@ export const getAllArticleEntries = async () => {
     return entries;
   } catch (e) {
     console.warn('Contentful ERROR: ', e);
-    return null;
+    return e;
   }
 };
