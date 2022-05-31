@@ -10,7 +10,10 @@ export const ArticleCard = ({ title, subtitle, category, image, id }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={onPressHandler}>
+    <TouchableOpacity
+      style={[styles.btnContainer, styles.shadow]}
+      onPress={onPressHandler}
+    >
       <View style={styles.contentContainer}>
         <FastImage source={{ uri: image }} style={styles.thumbnailStyle} />
         <View style={{ flex: 0.65 }}>
@@ -27,12 +30,12 @@ export const ArticleCard = ({ title, subtitle, category, image, id }) => {
 
 const styles = StyleSheet.create({
   btnContainer: {
-    backgroundColor: '#dedede',
+    backgroundColor: '#fff',
     margin: 5,
     borderRadius: 20,
     height: 100,
     width: 350,
-    borderColor: '#615d5e',
+    borderColor: '#747473',
     borderWidth: 1,
   },
   contentContainer: {
@@ -53,12 +56,20 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: RFPercentage(2.1),
     paddingBottom: RFPercentage(0.75),
+    color: '#9a3131',
   },
   subtitleStyle: {
     fontSize: RFPercentage(1.75),
     paddingBottom: RFPercentage(0.75),
+    color: '#2c2c2c',
   },
   categoryStyle: {
     fontSize: RFPercentage(1.25),
+  },
+  shadow: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });

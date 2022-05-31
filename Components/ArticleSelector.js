@@ -34,7 +34,8 @@ export const ArticleSelector = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    width: '100%',
+    backgroundColor: '#f5f0ed',
     alignItems: 'center',
     justifyContent: 'center',
   },
