@@ -2,28 +2,15 @@
     @brief: This screen displays a scrollable list of all available to read blogs
 */
 
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  getArticleEntries,
-  getArticleEntriesStatus,
-  getArticleEntriesError,
-  fetchAllArticleEntries,
-} from '../redux/articleCollectionSlice';
+import React from 'react';
+import { StyleSheet, Text, FlatList, SafeAreaView } from 'react-native';
+import { useSelector } from 'react-redux';
+import { getArticleEntries } from '../redux/articleCollectionSlice';
+
+import { ArticleCard } from './ArticleCard';
 
 export const ArticleSelector = () => {
-  // define article entries stuff
-  const dispatch = useDispatch();
   const articleEntries = useSelector(getArticleEntries);
-  const articleEntriesStatus = useSelector(getArticleEntriesStatus);
-  const articleEntriesError = useSelector(getArticleEntriesError);
-
-  //useEffect to get all articles if status is idle
-  useEffect(() => {
-    if (articleEntriesStatus === 'idle') dispatch(fetchAllArticleEntries());
-  }, [articleEntriesStatus, dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +18,13 @@ export const ArticleSelector = () => {
         keyExtractor={(item) => item.id}
         data={articleEntries}
         renderItem={({ item }) => (
-          <Text style={styles.text}> {item.title} </Text>
+          <ArticleCard
+            title={item.title}
+            subtitle={item.subtitle}
+            category={item.category}
+            id={item.id}
+            image={item.thubnailUrl}
+          />
         )}
       />
     </SafeAreaView>

@@ -1,10 +1,10 @@
 /*
-    @brief: This screen displays a scrollable list of all available to read blogs
+    @brief: This screen displays the search bar,
+    category filters and article selector
 */
 
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from '../Components/Loader';
 import { ArticleSelector } from '../Components/ArticleSelector';
@@ -18,9 +18,7 @@ import {
 export const ArticleFeed = () => {
   // define article entries stuff
   const dispatch = useDispatch();
-  const articleEntries = useSelector(getArticleEntries);
   const articleEntriesStatus = useSelector(getArticleEntriesStatus);
-  const articleEntriesError = useSelector(getArticleEntriesError);
 
   //useEffect to get all articles if status is idle
   useEffect(() => {
@@ -29,12 +27,16 @@ export const ArticleFeed = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#c00404'} />
       {articleEntriesStatus === 'idle' ? <Loader /> : <ArticleSelector />}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  statusBar: {
+    color: '#c00404',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
