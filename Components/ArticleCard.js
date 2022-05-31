@@ -13,10 +13,12 @@ export const ArticleCard = ({ title, subtitle, category, image, id }) => {
     <TouchableOpacity style={styles.btnContainer} onPress={onPressHandler}>
       <View style={styles.contentContainer}>
         <FastImage source={{ uri: image }} style={styles.thumbnailStyle} />
-        <View style={styles.textContainer}>
-          <Text style={styles.titleStyle}> {title} </Text>
-          <Text style={styles.subtitleStyle}> {subtitle} </Text>
-          <Text style={styles.categoryStyle}> {category} </Text>
+        <View style={{ flex: 0.65 }}>
+          <View style={styles.textContainer}>
+            <Text style={styles.titleStyle}> {title} </Text>
+            <Text style={styles.subtitleStyle}> {subtitle} </Text>
+            <Text style={styles.categoryStyle}> {category} </Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -30,6 +32,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: 100,
     width: 350,
+    borderColor: '#615d5e',
+    borderWidth: 1,
   },
   contentContainer: {
     flexDirection: 'row',
@@ -41,21 +45,20 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   thumbnailStyle: {
-    //flex: 0.4,
-    width: 80,
+    flex: 0.35,
     height: 80,
     padding: 10,
     borderRadius: 10,
   },
   titleStyle: {
-    fontSize: RFPercentage(2.5),
-    paddingBottom: 5,
+    fontSize: RFPercentage(2.1),
+    paddingBottom: RFPercentage(0.75),
   },
   subtitleStyle: {
-    fontSize: RFPercentage(2),
-    paddingBottom: 3,
+    fontSize: RFPercentage(1.75),
+    paddingBottom: RFPercentage(0.75),
   },
   categoryStyle: {
-    fontSize: RFPercentage(1),
+    fontSize: RFPercentage(1.25),
   },
 });
