@@ -2,6 +2,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 export const ArticleCard = ({ title, subtitle, category, image, id }) => {
   const onPressHandler = () => {
@@ -47,13 +48,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   titleStyle: {
-    fontSize: 16,
+    fontSize: RFPercentage(2.5),
     paddingBottom: 5,
   },
   subtitleStyle: {
-    fontSize: 12,
+    fontSize: RFPercentage(2),
+    paddingBottom: 3,
   },
   categoryStyle: {
-    fontSize: 8,
+    fontSize: RFPercentage(1),
   },
 });
