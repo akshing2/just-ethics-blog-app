@@ -3,15 +3,14 @@
 */
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import {
   getSelectedArticleId,
   getArticleEntries,
 } from '../redux/articleCollectionSlice';
 import { useSelector } from 'react-redux';
-import { getEntry } from '../Services/contentfulApi';
 import FastImage from 'react-native-fast-image';
-import { Banner } from '../Components/Banner';
+
 // @params:
 //  articleId -> (string) contentfu article id used to load content.
 export const ArticleScreen = () => {
@@ -28,7 +27,7 @@ export const ArticleScreen = () => {
     console.log('thumbnail Url: ', article.thumbnailUrl);
   });
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FastImage
         style={styles.articleThumbnail}
         source={{
@@ -38,14 +37,14 @@ export const ArticleScreen = () => {
         }}
       />
       <Text> Loading Article: {article.title} </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f0ed',
+    backgroundColor: '#942727',
     alignItems: 'center',
     flexDirection: 'column',
   },

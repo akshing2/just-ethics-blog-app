@@ -4,7 +4,7 @@
 */
 
 import React, { useEffect } from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from '../Components/Loader';
 import { Banner } from '../Components/Banner';
@@ -14,6 +14,7 @@ import {
   getArticleEntriesStatus,
   fetchAllArticleEntries,
 } from '../redux/articleCollectionSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const ArticleFeed = ({ navigation }) => {
   // define article entries stuff
@@ -26,15 +27,18 @@ export const ArticleFeed = ({ navigation }) => {
   }, [articleEntriesStatus, dispatch]);
 
   return (
-    <View style={styles.container}>
-      <Banner />
-      <SearchBar />
-      {articleEntriesStatus === 'idle' ? (
-        <Loader />
-      ) : (
-        <ArticleSelector navigation={navigation} />
-      )}
-    </View>
+    <SafeAreaView style={styles.safeContainer} edges={['top']}>
+      <StatusBar barStyle='light-content' />
+      <View style={styles.viewContainer}>
+        <SearchBar />
+        {/* <TextInput placeholder='stuff' /> */}
+        {articleEntriesStatus === 'idle' ? (
+          <Loader />
+        ) : (
+          <ArticleSelector navigation={navigation} />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -42,11 +46,17 @@ const styles = StyleSheet.create({
   statusBar: {
     color: '#c00404',
   },
-  container: {
+  safeContainer: {
     flex: 1,
-    backgroundColor: '#f5f0ed',
+    backgroundColor: '#942727',
+  },
+  viewContainer: {
     alignItems: 'center',
-    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#f5f0ed',
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   text: {
     color: 'black',

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
-import AntDesignIcon from '@expo/vector-icons/AntDesign';
 
 export const SearchBar = () => {
   return (
@@ -14,22 +13,18 @@ export const SearchBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    backgroundColor: '#f5f0ed',
+    flex: 0.065,
     width: '100%',
-    flex: 0.1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    paddingTop: 10,
+    paddingHorizontal: 20,
   },
   textInput: {
-    flex: 0.85,
-    padding: 10,
-    marginBottom: 10,
+    color: 'black',
+    height: 36,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#7c7c74',
-    color: '#7c7c74',
-    width: '100%',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    padding: 5,
   },
 });
