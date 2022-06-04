@@ -4,13 +4,16 @@
 
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { getSelectedArticleId } from '../redux/articleCollectionSlice';
+import { useSelector } from 'react-redux';
 
 // @params:
 //  articleId -> (string) contentfu article id used to load content.
-export const ArticleScreen = ({ articleId }) => {
+export const ArticleScreen = () => {
+  const selectedArticleId = useSelector(getSelectedArticleId);
   return (
     <View style={styles.container}>
-      <Text> Loading Article: {articleId} </Text>
+      <Text> Loading Article: {selectedArticleId} </Text>
     </View>
   );
 };

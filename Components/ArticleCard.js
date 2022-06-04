@@ -1,6 +1,8 @@
 // @ brief: this is a component to render a touchable card to open a selected article
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { selectArticleId } from '../redux/articleCollectionSlice';
 import FastImage from 'react-native-fast-image';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
@@ -12,8 +14,11 @@ export const ArticleCard = ({
   id,
   navigation,
 }) => {
+  const dispatch = useDispatch();
+
   const onPressHandler = () => {
     console.log('Opening article id: ', id);
+    dispatch(selectArticleId(String(id)));
     navigation.navigate('ArticleScreen');
   };
 

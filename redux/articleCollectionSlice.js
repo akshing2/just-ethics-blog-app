@@ -28,6 +28,7 @@ const initialState = {
   entries: [], // array of entries as per contentful documentation
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'r
   error: null,
+  selectedArticleId: null,
 };
 
 export const articleCollectionSlice = createSlice({
@@ -39,6 +40,10 @@ export const articleCollectionSlice = createSlice({
       state.articleCollection.entries = [];
       state.articleCollection.status = 'idle';
       state.articleCollection.error = null;
+    },
+    selectArticleId: (state, action) => {
+      console.log('Selected Article Id: ', state.selectedArticleId);
+      state.selectedArticleId = action.payload;
     },
   },
   extraReducers(builder) {
@@ -63,11 +68,16 @@ export const articleCollectionSlice = createSlice({
   },
 });
 
+export const { resetArticleCollection, selectArticleId } =
+  articleCollectionSlice.actions;
+
 // export selectors
 export const getArticleEntries = (state) => state.articleCollection.entries;
 export const getArticleEntriesStatus = (state) =>
   state.articleCollection.status;
 export const getArticleEntriesError = (state) => state.articleCollection.error;
+export const getSelectedArticleId = (state) =>
+  state.articleCollection.selectedArticleId;
 // export actions
 export const { emptyArticleCollection } = articleCollectionSlice.actions;
 // export reducer
