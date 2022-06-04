@@ -29,9 +29,21 @@ export const getAllArticleEntries = async () => {
   try {
     const entries = await client.getEntries();
     console.log('Contentful Entries Recieved!: ', entries.total);
-    return entries;
+    return entries.toPlainObject();
   } catch (e) {
     console.warn('Contentful ERROR: ', e);
     return e;
+  }
+};
+
+// function to get an entry based on id
+export const getEntry = async (entryId) => {
+  const client = await getContentfulClient();
+  try {
+    const entry = await client.getEntry(entryId);
+    console.log('Entry in api: ', entry);
+    return entry;
+  } catch (e) {
+    console.warn('Contentful ERROR: ', e);
   }
 };
