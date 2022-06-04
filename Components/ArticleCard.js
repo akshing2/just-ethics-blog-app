@@ -20,11 +20,29 @@ export const ArticleCard = ({ title, subtitle, category, image, id }) => {
           <View style={styles.textContainer}>
             <Text style={styles.titleStyle}> {title} </Text>
             <Text style={styles.subtitleStyle}> {subtitle} </Text>
-            <Text style={styles.categoryStyle}> {category} </Text>
+            <CategoryBanner category={category} />
           </View>
         </View>
       </View>
     </TouchableOpacity>
+  );
+};
+
+// component to render category banner that lives within ArticleCard
+const CategoryBanner = ({ category }) => {
+  return (
+    <View
+      style={[
+        styles.categoryBanner,
+        category === 'Intro to Ethics'
+          ? styles.introToEthics
+          : category === 'Modern Problems'
+          ? styles.modernProblems
+          : styles.reflections,
+      ]}
+    >
+      <Text style={styles.categoryStyle}> {category} </Text>
+    </View>
   );
 };
 
@@ -63,8 +81,24 @@ const styles = StyleSheet.create({
     paddingBottom: RFPercentage(0.75),
     color: '#2c2c2c',
   },
+  categoryBanner: {
+    //backgroundColor: '#942727',
+    padding: 5,
+    alignSelf: 'flex-start',
+    borderRadius: 5,
+  },
+  introToEthics: {
+    backgroundColor: '#942727',
+  },
+  reflections: {
+    backgroundColor: '#7c7c74',
+  },
+  modernProblems: {
+    backgroundColor: '#4d77eb',
+  },
   categoryStyle: {
     fontSize: RFPercentage(1.25),
+    color: 'white',
   },
   shadow: {
     shadowColor: '#171717',
