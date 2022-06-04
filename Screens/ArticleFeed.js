@@ -7,7 +7,9 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from '../Components/Loader';
+import { Banner } from '../Components/Banner';
 import { ArticleSelector } from '../Components/ArticleSelector';
+import { SearchBar } from '../Components/SearchBar';
 import {
   getArticleEntries,
   getArticleEntriesStatus,
@@ -27,7 +29,8 @@ export const ArticleFeed = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={'#c00404'} />
+      <Banner />
+      <SearchBar />
       {articleEntriesStatus === 'idle' ? <Loader /> : <ArticleSelector />}
     </View>
   );
@@ -42,6 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
   },
   text: {
     color: 'black',
