@@ -6,22 +6,11 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
 // @params:
-//  article -> (object) article object from contentful backend.
-export const Article = ({ article }) => {
+//  articleId -> (string) contentfu article id used to load content.
+export const ArticleScreen = ({ articleId }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.articleThumbnailContainer}>
-        {article.articleThumbnail && (
-          <Image
-            style={styles.articleThumbnail}
-            source={article.articleThumbnail.url}
-          />
-        )}
-      </View>
-      <View style={styles.articleThumbnailContainer}>
-        <Text style={styles.text}>{article.title}</Text>
-        <Text style={styles.text}>{article.subtitle}</Text>
-      </View>
+      <Text> Loading Article: {articleId} </Text>
     </View>
   );
 };

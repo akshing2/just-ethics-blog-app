@@ -2,12 +2,15 @@ import React from 'react';
 
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import { ArticleFeed } from './Screens/ArticleFeed';
+import { NavigationContainer } from '@react-navigation/native';
+import { ArticleStack } from './Navigation/ArticleStack';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <ArticleFeed />
+      <NavigationContainer>
+        <ArticleStack />
+      </NavigationContainer>
     </Provider>
   );
 };

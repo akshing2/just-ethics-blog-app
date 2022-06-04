@@ -36,6 +36,7 @@ export const mapArticleItemsArray = (entries) => {
       subtitle,
       category,
       thubnailUrl: 'https:' + url,
+      body,
     };
     mappedEntries.push(mappedEntry);
   });

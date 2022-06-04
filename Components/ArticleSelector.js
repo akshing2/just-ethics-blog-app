@@ -9,7 +9,7 @@ import { getArticleEntries } from '../redux/articleCollectionSlice';
 
 import { ArticleCard } from './ArticleCard';
 
-export const ArticleSelector = () => {
+export const ArticleSelector = ({ navigation }) => {
   const articleEntries = useSelector(getArticleEntries);
 
   return (
@@ -24,6 +24,7 @@ export const ArticleSelector = () => {
             category={item.category}
             id={item.id}
             image={item.thubnailUrl}
+            navigation={navigation}
           />
         )}
       />

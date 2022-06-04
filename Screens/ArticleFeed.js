@@ -17,7 +17,7 @@ import {
   fetchAllArticleEntries,
 } from '../redux/articleCollectionSlice';
 
-export const ArticleFeed = () => {
+export const ArticleFeed = ({ navigation }) => {
   // define article entries stuff
   const dispatch = useDispatch();
   const articleEntriesStatus = useSelector(getArticleEntriesStatus);
@@ -31,7 +31,11 @@ export const ArticleFeed = () => {
     <View style={styles.container}>
       <Banner />
       <SearchBar />
-      {articleEntriesStatus === 'idle' ? <Loader /> : <ArticleSelector />}
+      {articleEntriesStatus === 'idle' ? (
+        <Loader />
+      ) : (
+        <ArticleSelector navigation={navigation} />
+      )}
     </View>
   );
 };

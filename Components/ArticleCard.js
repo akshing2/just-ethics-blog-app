@@ -4,9 +4,17 @@ import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
-export const ArticleCard = ({ title, subtitle, category, image, id }) => {
+export const ArticleCard = ({
+  title,
+  subtitle,
+  category,
+  image,
+  id,
+  navigation,
+}) => {
   const onPressHandler = () => {
     console.log('Opening article id: ', id);
+    navigation.navigate('ArticleScreen');
   };
 
   return (
