@@ -11,9 +11,7 @@ import { Banner } from '../Components/Banner';
 import { ArticleSelector } from '../Components/ArticleSelector';
 import { SearchBar } from '../Components/SearchBar';
 import {
-  getArticleEntries,
   getArticleEntriesStatus,
-  getArticleEntriesError,
   fetchAllArticleEntries,
 } from '../redux/articleCollectionSlice';
 
@@ -46,9 +44,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f0ed',
     alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'column',
   },
   text: {

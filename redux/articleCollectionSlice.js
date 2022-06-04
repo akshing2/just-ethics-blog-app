@@ -29,6 +29,7 @@ const initialState = {
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'r
   error: null,
   selectedArticleId: null,
+  selectedArticle: null, // selected entry.fields
 };
 
 export const articleCollectionSlice = createSlice({
@@ -40,6 +41,7 @@ export const articleCollectionSlice = createSlice({
       state.articleCollection.entries = [];
       state.articleCollection.status = 'idle';
       state.articleCollection.error = null;
+      state.selectedArticleId = null;
     },
     selectArticleId: (state, action) => {
       console.log('Selected Article Id: ', state.selectedArticleId);
@@ -68,7 +70,7 @@ export const articleCollectionSlice = createSlice({
   },
 });
 
-export const { resetArticleCollection, selectArticleId } =
+export const { resetArticleCollection, selectArticleId, selectArticle } =
   articleCollectionSlice.actions;
 
 // export selectors

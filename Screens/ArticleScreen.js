@@ -3,34 +3,41 @@
 */
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { getSelectedArticleId } from '../redux/articleCollectionSlice';
+import { View, Text, StyleSheet } from 'react-native';
+import {
+  getSelectedArticleId,
+  getArticleEntries,
+} from '../redux/articleCollectionSlice';
 import { useSelector } from 'react-redux';
 import { getEntry } from '../Services/contentfulApi';
-
+import FastImage from 'react-native-fast-image';
+import { Banner } from '../Components/Banner';
 // @params:
 //  articleId -> (string) contentfu article id used to load content.
 export const ArticleScreen = () => {
+  // selected article id
   const selectedArticleId = useSelector(getSelectedArticleId);
-  const [article, setArticle] = useState(null);
-  useEffect(() => {
-    const fetchEntry = async () => {
-      const entry = await getEntry(selectedArticleId);
-      setArticle(entry);
-    };
-
-    fetchEntry().catch((e) => {
-      console.warn('Error fetching article: ', e);
-    });
-  }, []);
+  // selected article
+  const entries = useSelector(getArticleEntries);
+  const article = entries.filter((entry) => {
+    return entry.id === selectedArticleId;
+  })[0];
 
   useEffect(() => {
-    console.log('Article: ', article);
+    console.log('Article Selected: ', article);
+    console.log('thumbnail Url: ', article.thumbnailUrl);
   });
-
   return (
     <View style={styles.container}>
-      <Text> Loading Article: {selectedArticleId} </Text>
+      <FastImage
+        style={styles.articleThumbnail}
+        source={{
+          uri: article.thumbnailUrl,
+          priority: FastImage.priority.normal,
+          cache: FastImage.cacheControl.immutable,
+        }}
+      />
+      <Text> Loading Article: {article.title} </Text>
     </View>
   );
 };
@@ -38,14 +45,13 @@ export const ArticleScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f5f0ed',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  articleThumbnailContainer: {
-    flex: 0.2,
+    flexDirection: 'column',
   },
   articleThumbnail: {
     width: '100%',
+    height: 225,
   },
   textContainer: {
     flex: 0.8,

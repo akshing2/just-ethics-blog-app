@@ -35,7 +35,7 @@ export const mapArticleItemsArray = (entries) => {
       title,
       subtitle,
       category,
-      thubnailUrl: 'https:' + url,
+      thumbnailUrl: 'https:' + url,
       body,
     };
     mappedEntries.push(mappedEntry);

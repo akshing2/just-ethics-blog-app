@@ -23,7 +23,7 @@ export const ArticleSelector = ({ navigation }) => {
             subtitle={item.subtitle}
             category={item.category}
             id={item.id}
-            image={item.thubnailUrl}
+            image={item.thumbnailUrl}
             navigation={navigation}
           />
         )}
