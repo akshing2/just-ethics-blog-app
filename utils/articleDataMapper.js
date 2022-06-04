@@ -23,11 +23,6 @@ export const mapArticleItemsArray = (entries) => {
         },
       },
       sys: { id },
-      //   articleThumbnail: {
-      //     fields: {
-      //       file: { url },
-      //     },
-      //   },
     } = entry;
 
     const mappedEntry = {
