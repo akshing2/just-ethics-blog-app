@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, StyleSheet, View } from 'react-native';
 import {
   getSelectedArticleId,
   getArticleEntries,
@@ -11,6 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 // @params:
 //  articleId -> (string) contentfu article id used to load content.
@@ -25,7 +26,10 @@ export const ArticleScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeContainer} edges={['top']}>
-      <ScrollView style={styles.scrollContainer}>
+      <ScrollView
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.scrollContentContainer}
+      >
         <FastImage
           style={styles.articleThumbnail}
           source={{
@@ -34,7 +38,10 @@ export const ArticleScreen = () => {
             cache: FastImage.cacheControl.immutable,
           }}
         />
-        <Text> Loading Article: {article.title} </Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{article.title}</Text>
+          <Text style={styles.subtitle}>{article.subtitle}</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -43,25 +50,32 @@ export const ArticleScreen = () => {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: '#942727',
-    alignItems: 'center',
-    flexDirection: 'column',
+    backgroundColor: '#942727', // background color of top bar
   },
   scrollContainer: {
     width: '100%',
     backgroundColor: '#f5f0ed',
+  },
+  scrollContentContainer: {
+    alignItems: 'flex-start',
+    flex: 1,
+    width: '100%',
   },
   articleThumbnail: {
     width: '100%',
     height: 225,
   },
   textContainer: {
-    flex: 0.8,
-    justifyContent: 'flex-start',
+    paddingHorizontal: 10,
   },
   // TODO: need to create styles for different text types
-  text: {
-    fontSize: 24,
-    margin: 10,
+  title: {
+    fontSize: RFPercentage(4),
+    color: '#942727',
+    paddingVertical: 10,
+  },
+  subtitle: {
+    fontSize: RFPercentage(2.5),
+    color: '#7c7c74',
   },
 });
