@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import RenderHTML, { defaultSystemFonts } from 'react-native-render-html';
 
 // @params:
 //  articleId -> (string) contentfu article id used to load content.
@@ -23,6 +25,8 @@ export const ArticleScreen = () => {
   const article = entries.filter((entry) => {
     return entry.id === selectedArticleId;
   })[0];
+
+  console.log('body: ', article.body);
 
   return (
     <SafeAreaView style={styles.safeContainer} edges={['top']}>
@@ -41,6 +45,12 @@ export const ArticleScreen = () => {
         <View style={styles.textContainer}>
           <Text style={styles.title}>{article.title}</Text>
           <Text style={styles.subtitle}>{article.subtitle}</Text>
+          <RenderHTML
+            baseStyle={styles.bodyContainer}
+            source={{
+              html: documentToHtmlString(article.body),
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -77,5 +87,9 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: RFPercentage(2.5),
     color: '#7c7c74',
+  },
+  bodyContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
   },
 });
